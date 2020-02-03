@@ -86,6 +86,9 @@ class ProductItem(scrapy.Item):
     tags = scrapy.Field(
         output_processor=MapCompose(StripText())
     )
+    platform = scrapy.Field(
+        output_processor=MapCompose(StripText())
+    )
     price = scrapy.Field(
         output_processor=Compose(TakeFirst(),
                                  StripText(chars=' $\n\t\r'),
@@ -98,6 +101,18 @@ class ProductItem(scrapy.Item):
     )
     sentiment = scrapy.Field()
     n_reviews = scrapy.Field(
+        output_processor=Compose(
+            MapCompose(StripText(), lambda x: x.replace(',', ''), str_to_int),
+            max
+        )
+    )
+    p_reviews = scrapy.Field(
+        output_processor=Compose(
+            MapCompose(StripText(), lambda x: x.replace(',', ''), str_to_int),
+            max
+        )
+    )
+    m_reviews = scrapy.Field(
         output_processor=Compose(
             MapCompose(StripText(), lambda x: x.replace(',', ''), str_to_int),
             max
