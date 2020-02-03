@@ -68,6 +68,27 @@ def load_product(response):
     else:
         n_reviews = re.sub('[\(\,\)]','',n_reviews)
     loader.add_value('n_reviews', n_reviews)
+    
+    #Positive review count
+    p_reviews = response.xpath('//label[@for="review_type_positive"]/span/text()').get()
+    if p_reviews==None:
+        p_reviews='0'
+    else:
+        p_reviews = re.sub('[\(\,\)]','',p_reviews)
+    loader.add_value('p_reviews', p_reviews)
+    
+    #Negative review count
+    m_reviews = response.xpath('//label[@for="review_type_negative"]/span/text()').get()
+    if m_reviews==None:
+        m_reviews='0'
+    else:
+        m_reviews = re.sub('[\(\,\)]','',m_reviews)
+    loader.add_value('m_reviews', m_reviews)
+    
+    #Platforms (OS)
+    platform0 = response.xpath('//div[@class="game_area_purchase_platform"]/span/@class').getall()
+    platform1 = [re.sub('platform_img ','',item) for item in platform0]
+    loader.add_value('platform', platform1)
 
     loader.add_xpath(
         'metascore',
