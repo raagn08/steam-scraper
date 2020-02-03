@@ -35,7 +35,7 @@ class CircumventAgeCheckMiddleware(RedirectMiddleware):
     def _redirect(self, redirected, request, spider, reason):
         # Only overrule the default redirect behavior
         # in the case of mature content checkpoints.
-        if not re.findall('app/(.*)/agecheck', redirected.url):
+        if not re.findall('agecheck/app', redirected.url):
             return super()._redirect(redirected, request, spider, reason)
 
         logger.debug(f'Button-type age check triggered for {request.url}.')
