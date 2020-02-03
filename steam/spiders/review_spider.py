@@ -25,7 +25,7 @@ def load_review(review, product_id, page, order):
     loader.add_css('compensation', '.received_compensation::text')
 
     # User/reviewer data.
-    loader.add_css('user_id', '.apphub_CardContentAuthorName a::attr(href)', re='.*/profiles/(.+)/')
+    review.xpath('//div[@class="apphub_friend_block"]/@data-miniprofile').extract()[0]
     loader.add_css('username', '.apphub_CardContentAuthorName a::text')
     loader.add_css('products', '.apphub_CardContentMoreLink ::text', re='([\d,]+) product')
 
