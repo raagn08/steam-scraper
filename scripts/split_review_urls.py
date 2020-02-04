@@ -3,7 +3,7 @@ Load scraped product items into DataFrame, write review urls into N text files.
 
 Run example:
     $ python split_review_urls.py \
-        --scraped-products $(pwd)/../output/products_.jl \
+        --scraped-products $(pwd)/../output/products_all.jl \
         --output-dir $(pwd)/../output
 """
 import argparse
@@ -30,7 +30,7 @@ def parse_args():
     parser.add_argument(
         '--pieces',
         help='Number of URL files to produce.',
-        default=10
+        default=20
     )
     return parser.parse_args()
 
@@ -49,8 +49,8 @@ def main():
     blx = blx_nontrivial & blx_has_reviews
 
     urls = df.loc[blx, 'reviews_url'].unique()
-    urls = shuffle(urls)
-
+    shuffle(urls)
+    
     n = len(urls)
     step = int(math.ceil(float(n)/args.pieces))
 
