@@ -40,24 +40,27 @@ When it completes you should have metadata for all games on Steam in `output/pro
 Here's some example output:
 ```python
 {
-  'app_name': 'Cold Fear™',
-  'developer': 'Darkworks',
-  'early_access': False,
-  'genres': ['Action'],
-  'id': '15270',
-  'metascore': 66,
-  'n_reviews': 172,
-  'price': 9.99,
-  'publisher': 'Ubisoft',
-  'release_date': '2005-03-28',
-  'reviews_url': 'http://steamcommunity.com/app/15270/reviews/?browsefilter=mostrecent&p=1',
-  'sentiment': 'Very Positive',
-  'specs': ['Single-player'],
-  'tags': ['Horror', 'Action', 'Survival Horror', 'Zombies', 'Third Person', 'Third-Person Shooter'],
-  'title': 'Cold Fear™',
-  'url': 'http://store.steampowered.com/app/15270/Cold_Fear/'
- }
+"url": "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/", 
+"reviews_url": "http://steamcommunity.com/app/271590/reviews/?browsefilter=mostrecent&p=1", 
+"id": "271590", "title": "Grand Theft Auto V", 
+"genres": ["Action", "Adventure"], 
+"developer": "Rockstar North", 
+"publisher": "Rockstar Games", 
+"release_date": "Apr 14, 2015", 
+"app_name": "Grand Theft Auto V", 
+"specs": ["Single-player", "Steam Achievements", "Full controller support", "Remote Play on TV"], 
+"tags": ["Open World", "Action", "Multiplayer", "Automobile Sim", "Third Person", "Crime", "First-Person", "Shooter", "Adventure", "Singleplayer", "Third-Person Shooter", "Mature", "Racing", "Atmospheric", "Co-op", "Sandbox", "Funny", "Great Soundtrack", "Comedy", "Masterpiece"], 
+"price": 9.99, 
+"sentiment": "Mostly Positive", 
+"n_reviews": 724459, 
+"p_reviews": 562524, 
+"m_reviews": 161935, 
+"platform": ["win"], 
+"metascore": 96, 
+"early_access": false
+}
 ```
+*The above output is cleaned a bit to remove duplicates in some fields.*
 
 ## Extracting the Reviews
 
