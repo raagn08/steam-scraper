@@ -27,27 +27,17 @@ def load_product(response):
         loader.add_value('id', id)
 
     # Publication details.
-    details = response.css('.details_block').extract_first()
-    try:
-        details = details.split('<br>')
+    loader.add_css('title', '.apphub_AppName ::text')
+    dev = response.xpath('//div[@class="dev_row"]/div[@id="developers_list"]/a/text()').extract()
+    loader.add_value('developer', dev)
+    pub = response.xpath('//div[@class="dev_row"][2]/a/text()').extract()
+    loader.add_value('publisher', pub)
+    date = response.xpath('//div[@class="release_date"]/div[@class="date"]/text()').extract_first()
+    loader.add_value('release_date', date)
+    genres = response.xpath('(//div[@class="details_block"])[1]/a/text()').extract()
+    loader.add_value('genres', genres)
 
-        for line in details:
-            line = re.sub('<[^<]+?>', '', line)  # Remove tags.
-            line = re.sub('[\r\t\n]', '', line).strip()
-            for prop, name in [
-                ('Title:', 'title'),
-                ('Genre:', 'genres'),
-                ('Developer:', 'developer'),
-                ('Publisher:', 'publisher'),
-                ('Release Date:', 'release_date')
-            ]:
-                if prop in line:
-                    item = line.replace(prop, '').strip()
-                    loader.add_value(name, item)
-    except:  # noqa E722
-        pass
-
-    loader.add_css('app_name', '.apphub_AppName ::text')
+    
     loader.add_css('specs', '.game_area_details_specs a ::text')
     loader.add_css('tags', 'a.app_tag::text')
 
