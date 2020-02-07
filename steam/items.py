@@ -126,17 +126,11 @@ class ProductItem(scrapy.Item):
 
 class ReviewItem(scrapy.Item):
     product_id = scrapy.Field()
-    page = scrapy.Field()
-    page_order = scrapy.Field()
     recommended = scrapy.Field(
         output_processor=Compose(TakeFirst(), simplify_recommended),
     )
     date = scrapy.Field(
         output_processor=Compose(TakeFirst(), standardize_date)
-    )
-    text = scrapy.Field(
-        input_processor=MapCompose(StripText()),
-        output_processor=Compose(Join('\n'), StripText())
     )
     hours = scrapy.Field(
         output_processor=Compose(TakeFirst(), str_to_float)
@@ -144,18 +138,10 @@ class ReviewItem(scrapy.Item):
     found_helpful = scrapy.Field(
         output_processor=Compose(TakeFirst(), str_to_int)
     )
-    found_unhelpful = scrapy.Field(
-        output_processor=Compose(TakeFirst(), str_to_int)
-    )
     found_funny = scrapy.Field(
         output_processor=Compose(TakeFirst(), str_to_int)
     )
-    compensation = scrapy.Field()
-    username = scrapy.Field()
     user_id = scrapy.Field()
-    products = scrapy.Field(
-        output_processor=Compose(TakeFirst(), str_to_int)
-    )
     early_access = scrapy.Field()
 
 
